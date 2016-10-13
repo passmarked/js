@@ -1,0 +1,53 @@
+{
+  "name": "passmarked-js",
+  "version": "0.0.1",
+  "description": "Javascript API for the Passmarked Platform",
+  "homepage": "https://passmarked.com",
+  "preferGlobal": true,
+  "engines": {
+    "node": ">0.12"
+  },
+  "bin": {
+    "passmarked": "index"
+  },
+  "scripts": {
+  },
+  "author": "Passmarked <info@passmarked.com>",
+  "keywords": [
+    "passmarked",
+    "performance",
+    "js",
+    "jsapi",
+    "javascript",
+    "pagespeed",
+    "security",
+    "compatibility",
+    "standards"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/passmarked/js/"
+  },
+  "bugs": {
+    "url": "https://github.com/passmarked/js/issues",
+    "email": "support@passmarked.com"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "codeclimate-test-reporter": "^0.1.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-declare": "^0.3.0",
+    "gulp-handlebars": "^4.0.0",
+    "gulp-inline-css": "^3.1.0",
+    "gulp-less": "^3.1.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.10",
+    "gulp-wrap": "^0.13.0",
+    "istanbul": "^0.3.18",
+    "mocha": "^2.2.5",
+    "nock": "^5.2.1"
+  }
+}
