@@ -29,19 +29,19 @@ The JS API provides a simple to use widget that can be added to any page using a
 
 To use the widget, first make sure the library is loaded in the head or just before the body of the page:
 
-```
+```HTML
 <script src="//cdn.passmarked.com/jsapi/v1.js"></script>
 ```
 
 Then create a div that the widget can use (everything inside this div will be removed when the widget's HTML is inserted:
 
-```
+```javascript
 <div id="passmarked-widget"></div>
 ```
 
 then simply start the actual widget pointing to the defined wrapper block:
 
-```
+```javascript
 var widget = passmarked.createWidget({
 
   el:     document.querySelector('#passmarked-widget'),
@@ -54,7 +54,7 @@ After reloading the page, the widget will now appear be usable.
 
 ## Running a report with the API
 
-```
+```javascript
 /**
 * Create a report
 **/
@@ -118,9 +118,9 @@ See [passmarked.com/library](https://passmarked.com/library) for all the rules.
 ## Contributing
 
 ```bash
-git clone git@github.com:passmarked/seo.git
+git clone git@github.com:passmarked/js.git
 npm install
-npm test
+gulp build / gulp watch
 ```
 
 Pull requests have a prerequisite of passing tests. If your contribution is accepted, it will be merged into `develop` (and then `master` after staging tests by the team) which will then be deployed live to [passmarked.com](http://passmarked.com) and on NPM for everyone to download and test.
