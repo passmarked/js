@@ -1,7 +1,5 @@
 # @passmarked/js
 
-## STILL IN DEVELOPMENT, ETA 2 WEEKS TO START USING
-
 [Passmarked](http://passmarked.com) is a suite of tests that can be run against any page/website to identify issues with parity to most online tools in one package.
 
 The [Terminal Client](http://npmjs.org/package/passmarked) is intended for use by developers to integrate into their workflow/CI servers but also integrate into their own application that might need to test websites and provide realtime feedback.
@@ -17,40 +15,6 @@ To install just add the library as part of your HTML:
 ```
 
 The page will now have a global `passmarked` object that can be used
-
-## Widget
-
-The JS API provides a simple to use widget that can be added to any page using a few lines of Javascript code. This widget will allow users to test numerous parts of their site depending on the `mode`, which can be:
-
-* `categories` (default) - Displays the list of categories [Performance](https://passmarked.com/library/performance) / [Compatibility](https://passmarked.com/library/compatibility) / [Content](https://passmarked.com/library/content) / [Security](https://passmarked.com/library/security).
-* `rules` - Displays a list of selected rules in a list with a check next to each if found on the target page
-* `screenshots` - Displays a list of screenshots of numerous screensize's, to show how a site appears on each of these devices.
-* 
-
-To use the widget, first make sure the library is loaded in the head or just before the body of the page:
-
-```HTML
-<script src="//cdn.passmarked.com/jsapi/v1.js"></script>
-```
-
-Then create a div that the widget can use (everything inside this div will be removed when the widget's HTML is inserted:
-
-```javascript
-<div id="passmarked-widget"></div>
-```
-
-then simply start the actual widget pointing to the defined wrapper block:
-
-```javascript
-var widget = passmarked.createWidget({
-
-  el:     document.querySelector('#passmarked-widget'),
-  token:  '<token-for-passmarked-api>'
-
-});
-```
-
-After reloading the page, the widget will now appear be usable.
 
 ## Running a report with the API
 
@@ -106,6 +70,42 @@ report.on('done', function() {
 
 });
 ```
+
+## Widget
+
+The widget is still in development and will provide a way of anyone to easily run Passmarked on their sites to check their clients for all or specific rules like Heartbleed and more. Check out <a href="https://passmarked.com/library">Library</a> for all the available rules.
+
+The JS API provides a simple to use widget that can be added to any page using a few lines of Javascript code. This widget will allow users to test numerous parts of their site depending on the `mode`, which can be:
+
+* `categories` (default) - Displays the list of categories [Performance](https://passmarked.com/library/performance) / [Compatibility](https://passmarked.com/library/compatibility) / [Content](https://passmarked.com/library/content) / [Security](https://passmarked.com/library/security).
+* `rules` - Displays a list of selected rules in a list with a check next to each if found on the target page
+* `screenshots` - Displays a list of screenshots of numerous screensize's, to show how a site appears on each of these devices.
+* 
+
+To use the widget, first make sure the library is loaded in the head or just before the body of the page:
+
+```HTML
+<script src="//cdn.passmarked.com/jsapi/v1.js"></script>
+```
+
+Then create a div that the widget can use (everything inside this div will be removed when the widget's HTML is inserted:
+
+```javascript
+<div id="passmarked-widget"></div>
+```
+
+then simply start the actual widget pointing to the defined wrapper block:
+
+```javascript
+var widget = passmarked.createWidget({
+
+  el:     document.querySelector('#passmarked-widget'),
+  token:  '<token-for-passmarked-api>'
+
+});
+```
+
+After reloading the page, the widget will now appear be usable.
 
 ## Rules
 
