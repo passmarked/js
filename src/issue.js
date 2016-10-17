@@ -16,6 +16,42 @@ var Issue = (function(options) {
   };
 
   /**
+  * Returns the number of times this was seen as criticals
+  **/
+  obj.getCriticals = function() {
+
+    return parseInt(obj.get('criticals'));
+
+  };
+
+  /**
+  * Returns the number of times this was seen as errors
+  **/
+  obj.getErrors = function() {
+
+    return parseInt(obj.get('errors'));
+
+  };
+
+  /**
+  * Returns the number of times this was seen as warnings
+  **/
+  obj.getWarnings = function() {
+
+    return parseInt(obj.get('warnings'));
+
+  };
+
+  /**
+  * Returns the number of times this was seen as notices
+  **/
+  obj.getNotices = function() {
+
+    return parseInt(obj.get('notices'));
+
+  };
+
+  /**
   * Returns the number of times this was seen,
   * this is the aggregate of all levels
   **/
@@ -57,6 +93,7 @@ var Issue = (function(options) {
   **/
   obj.getCategory = function() {
 
+    // returns the category
     return obj.get('category');
 
   };
@@ -66,6 +103,7 @@ var Issue = (function(options) {
   **/
   obj.getTest = function() {
 
+    // returns the TEST
     return obj.get('test');
 
   };
@@ -75,6 +113,7 @@ var Issue = (function(options) {
   **/
   obj.getUID = function() {
 
+    // returns the UID
     return obj.get('uid');
 
   };
@@ -82,26 +121,10 @@ var Issue = (function(options) {
   /**
   * Returns the message of the issue
   **/
-  obj.getMessage = function() {
+  obj.getMessage = function(format) {
 
+    // just return
     return obj.get('message');
-
-  };
-
-  /**
-  * Returns the message of the issue
-  **/
-  obj.getPreviewURL = function() {
-
-    return [
-
-      'https://beta.passmarked.com/library',
-      obj.get('category'),
-      obj.get('test'),
-      obj.get('uid'),
-      utils.slugify(obj.get('message'))
-
-    ].join('/')
 
   };
 

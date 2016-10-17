@@ -7,20 +7,6 @@ var api = (function() {
   **/
   api.submit = function(options, fn) {
 
-    // add the source
-    if(!options.source)
-      options.source = document.location.href
-
-    // add the app
-    if(!options.app)
-      options.app = 'passmarked.widget';
-
-    // add the user agent
-    if(!options.useragent && 
-        navigator && 
-          navigator.userAgent)
-            options.useragent = navigator.userAgent;
-
     // submit
     api.request({
 
@@ -32,10 +18,73 @@ var api = (function() {
 
   };
 
+  api.stringify = function(params) {
+
+    // array of objects to return
+    var queryParams = [];
+
+    // loop all the keys
+    for(var key in params) {
+
+      // add to list
+      queryParams.push([
+
+        encodeURIComponent(key),
+        encodeURIComponent(params[key])
+
+      ].join('='))
+
+    }
+
+    // return if any ?
+    if(queryParams.length > 0) {
+
+      // return the list
+      return '?' + queryParams.join('&');
+
+    } else {
+
+      // return nothing
+      return '';
+
+    }
+          
+  }
+
+  /**
+  * Returns common tracking properties for requests
+  **/
+  api.getClientInfo = function() {
+
+    // add the items
+    var opts = {};
+
+    // add the source
+    if(window.document && 
+        window.document.location)
+          opts.source = document.location.href
+
+    // add the app
+    opts.client   = 'passmarked.js';
+    opts.app      = 'passmarked.js';
+
+    // add the user agent
+    if(window.navigator && 
+        window.navigator.userAgent)
+          opts.useragent = navigator.userAgent;
+
+    // done
+    return opts;
+
+  }; 
+
   /**
   * Does a actual CORS request over to the API
   **/
   api.request = function(options, fn) {
+
+    // get the tracking properties
+    var clientInfo = api.getClientInfo();
 
     // flag if we have already done the callback
     var callbackCalled = false;
@@ -57,11 +106,19 @@ var api = (function() {
 
     };
 
+    // add to query string
+    var queryString = api.stringify(utils.merge(
+
+      !options.method || options.method === 'get' ? clientInfo : {},  
+      options.query   || {}
+
+    ));
+
     // create the request
     var request = new XMLHttpRequest();
 
     // get the href
-    var href = '' + options.url;
+    var href = options.url + queryString;
 
     // check the href
     if(href.indexOf('http') !== 0) {
@@ -107,8 +164,11 @@ var api = (function() {
     // set the data to send
     if(options.data) {
 
+      // add the source
+      var data = utils.merge(clientInfo, options.data)
+
       // make the actual request
-      request.send(JSON.stringify(options.data || {}));
+      request.send(JSON.stringify(data || {}));
 
     } else {
 
@@ -121,14 +181,96 @@ var api = (function() {
   };
 
   /**
-  * Returns the report with the specified UID
+  * Returns the list of occurrenes
   **/
-  api.getReport = function(uid, fn) {
+  api.getOccurrences = function(params, fn) {
 
     // submit
     api.request({
 
-      url:      '/v2/reports/' + uid,
+      url:      '/v2/reports/' + params.report + '/occurrences',
+      method:   'get',
+      query:    params
+
+    }, fn);
+
+  };
+
+  /**
+  * Returns the list of available websites
+  * for the token
+  **/
+  api.getIssues = function(params, fn) {
+
+    // submit
+    api.request({
+
+      url:      '/v2/reports/' + params.report + '/issues',
+      method:   'get',
+      query:    params
+
+    }, fn);
+
+  };
+
+  /**
+  * Returns the list of available websites
+  * for the token
+  **/
+  api.getWebsites = function(params, fn) {
+
+    // submit
+    api.request({
+
+      url:      '/v2/websites',
+      method:   'get',
+      query:    params
+
+    }, fn);
+
+  };
+
+  /**
+  * Returns the available credits for the current token
+  **/
+  api.getBalance = function(params, fn) {
+
+    // submit
+    api.request({
+
+      url:      '/v2/balance',
+      method:   'get',
+      query:    params
+
+    }, fn);
+
+  };
+
+  /**
+  * Returns the user from the current token
+  **/
+  api.getUser = function(params, fn) {
+
+    // submit
+    api.request({
+
+      url:      '/v2/user',
+      method:   'get',
+      query:    params
+
+    }, fn);
+
+  };
+
+  /**
+  * Returns the report with the specified UID
+  **/
+  api.getReport = function(params, fn) {
+
+    // submit
+    api.request({
+
+      url:      '/v2/reports/' + params.uid,
       method:   'get'
 
     }, fn);
