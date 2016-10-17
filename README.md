@@ -13,7 +13,7 @@ All of the checks on [Passmarked](http://passmarked.com) can be voted on importa
 To install just add the library as part of your HTML:
 
 ```
-<script src="//cdn.passmarked.com/jsapi/v1.js"></script>
+<script src="//jsapi.passmarked.com/v1.js"></script>
 ```
 
 The page will now have a global `passmarked` object that can be used
