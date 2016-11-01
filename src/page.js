@@ -198,7 +198,7 @@ var Page = (function(options) {
   /**
   * Returns the port of final target
   **/
-  obj.getProtocol = function() {
+  obj.getPort = function() {
 
     return obj.get('port');
 
