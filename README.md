@@ -71,6 +71,42 @@ report.on('done', function() {
 });
 ```
 
+## Widget
+
+The widget is still in development and will provide a way of anyone to easily run Passmarked on their sites to check their clients for all or specific rules like Heartbleed and more. Check out <a href="https://passmarked.com/library">Library</a> for all the available rules.
+
+The JS API provides a simple to use widget that can be added to any page using a few lines of Javascript code. This widget will allow users to test numerous parts of their site depending on the `mode`, which can be:
+
+* `categories` (default) - Displays the list of categories [Performance](https://passmarked.com/library/performance) / [Compatibility](https://passmarked.com/library/compatibility) / [Content](https://passmarked.com/library/content) / [Security](https://passmarked.com/library/security).
+* `rules` - Displays a list of selected rules in a list with a check next to each if found on the target page
+* `screenshots` - Displays a list of screenshots of numerous screensize's, to show how a site appears on each of these devices.
+* 
+
+To use the widget, first make sure the library is loaded in the head or just before the body of the page:
+
+```HTML
+<script src="//cdn.passmarked.com/jsapi/v1.js"></script>
+```
+
+Then create a div that the widget can use (everything inside this div will be removed when the widget's HTML is inserted:
+
+```javascript
+<div id="passmarked-widget"></div>
+```
+
+then simply start the actual widget pointing to the defined wrapper block:
+
+```javascript
+var widget = passmarked.createWidget({
+
+  el:     document.querySelector('#passmarked-widget'),
+  token:  '<token-for-passmarked-api>'
+
+});
+```
+
+After reloading the page, the widget will now appear be usable.
+
 ## Rules
 
 Rules represent checks that occur in this module, all of these rules have a **UID** which can be used to check for specific rules. For the structure and more details see the [Wiki](https://github.com/passmarked/passmarked/wiki) page on [Rules](https://github.com/passmarked/passmarked/wiki/Create).
